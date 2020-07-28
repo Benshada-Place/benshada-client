@@ -123,7 +123,12 @@ class Catalog extends Component {
 
   setOldOnes = (type, newValue) => {
     const { host, pathname } = window.location;
-    const url = new URL(`${host}${pathname}`);
+
+    const urlString = `${host}${pathname}`;
+    console.log(urlString);
+    const url = new URL(urlString);
+
+
     const { searchParams } = url;
     const qO = qs.parse(window.location.search);
     const { products } = this.props;
@@ -134,6 +139,8 @@ class Catalog extends Component {
     const prices = unique(sortNumAsc(initProd.map((i) => i && i.price)));
     const initMin = prices[0] || 0;
     const initMax = prices[prices.length - 1] || 0;
+
+    console.log(urlString, url);
 
     // Reset all params already in qO
     Object.entries(qO).forEach((i) => {
